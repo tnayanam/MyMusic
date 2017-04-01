@@ -30,12 +30,17 @@ namespace MyMusic.Controllers
         [HttpPost]
         public ActionResult Create(GigFormViewModel viewModel)
         {
+            if(!ModelState.IsValid)
+            {
+                viewModel.Genres = _context.Genres.ToList();
+                return View("Create", viewModel);
+            }
             var artistId = User.Identity.GetUserId();
             var gig = new Gig
             {
                 ArtistId = artistId,
                 Venue = viewModel.Venue,
-                DateTime = viewModel.DateTime,
+                DateTime = viewModel.GetDateTime(),
                 GenreId = viewModel.Genre
             };
             _context.Gigs.Add(gig);
