@@ -82,3 +82,5 @@ c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\
 c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.pdb
 c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.InitialModel.resources
 c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.csproj.GenerateResource.Cache
+c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.GigAndGenreModel.resources
+c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.OverrideConvention.resources
