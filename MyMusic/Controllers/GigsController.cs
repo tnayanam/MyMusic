@@ -35,7 +35,7 @@ namespace MyMusic.Controllers
             {
                 ArtistId = artistId,
                 Venue = viewModel.Venue,
-                DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
+                DateTime = viewModel.DateTime,
                 GenreId = viewModel.Genre
             };
             _context.Gigs.Add(gig);
