@@ -36,6 +36,7 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+    @*below is the place where we have actually referenced jquery  present in bundle.config file. Adding here jquery makes sure that jquery will be availble in every single page*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

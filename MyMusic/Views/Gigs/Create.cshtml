@@ -33,3 +33,9 @@
     </div>
 }
 
+@*Adding the script here makes sure that whaterver script loaded in layout.cshtml will get loaded and then only htis sript will get loaded*@
+
+@section scripts
+{ 
+    @Scripts.Render("~/bundles/jqueryval")
+}
