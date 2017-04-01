@@ -85,3 +85,4 @@ c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\
 c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.GigAndGenreModel.resources
 c:\users\lenovo\documents\visual studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.OverrideConvention.resources
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.PopularegenreTable.resources
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.Addforgienkeyproptogig.resources

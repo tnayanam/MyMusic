@@ -1,5 +1,7 @@
-﻿using MyMusic.Models;
+﻿using Microsoft.AspNet.Identity;
+using MyMusic.Models;
 using MyMusic.ViewModels;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -7,13 +9,14 @@ namespace MyMusic.Controllers
 {
     public class GigsController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public GigsController()
         {
             _context = new ApplicationDbContext();
         }
         // Create
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel
@@ -22,5 +25,23 @@ namespace MyMusic.Controllers
             };
             return View(viewModel);
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Create(GigFormViewModel viewModel)
+        {
+            var artistId = User.Identity.GetUserId();
+            var gig = new Gig
+            {
+                ArtistId = artistId,
+                Venue = viewModel.Venue,
+                DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
+                GenreId = viewModel.Genre
+            };
+            _context.Gigs.Add(gig);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
