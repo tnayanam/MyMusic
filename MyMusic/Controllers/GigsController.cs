@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using MyMusic.Models;
 using MyMusic.ViewModels;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -28,9 +27,10 @@ namespace MyMusic.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(GigFormViewModel viewModel)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 viewModel.Genres = _context.Genres.ToList();
                 return View("Create", viewModel);
@@ -50,3 +50,11 @@ namespace MyMusic.Controllers
 
     }
 }
+
+//How antiforgery works//
+// when we put antiforgery a roken is added as HiddenInputAttribute field in form
+// that we are going to submit and also in cookie its encrypted 
+// version is set. Now when form is submitted. bothe
+//the encrypted and the hidden field values is sent.
+//at server the hiddent value is encrypted to match with already received 
+//encruypted value from cookie, if they dont match then its csurf attack
