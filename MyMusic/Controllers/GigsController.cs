@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using MyMusic.Models;
 using MyMusic.ViewModels;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -48,6 +49,25 @@ namespace MyMusic.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a => a.Gig)
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .ToList();
+
+            var viewModel = new GigsViewModel
+            {
+                ShowActions = User.Identity.IsAuthenticated,
+                UpcomingGigs = gigs
+            };
+
+            return View(viewModel);
+        }
     }
 }
 
