@@ -88,3 +88,9 @@ C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.Addforgienkeyproptogig.resources
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.AddUserinApplicationUser.resources
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.AddAttendanceModel.resources
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Net.Http.Formatting.dll
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Web.Http.dll
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Web.Http.WebHost.dll
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Net.Http.Formatting.xml
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Web.Http.xml
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Web.Http.WebHost.xml
