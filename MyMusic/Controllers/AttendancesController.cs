@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using MyMusic.Dtos;
 using MyMusic.Models;
 using System.Linq;
 using System.Web.Http;
@@ -16,17 +17,17 @@ namespace MyMusic.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult Attend([FromBody]int gigId)
+        public IHttpActionResult Attend(AttendanceDto dto)
         {
             var userId = User.Identity.GetUserId();
-            var exists = _context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == gigId);
+            var exists = _context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == dto.GigId);
 
             if (exists)
                 return BadRequest("Attendance already exixts");
 
             var attendance = new Attendance
             {
-                GigId = gigId,
+                GigId = dto.GigId,
                 AttendeeId = userId
             };
 
