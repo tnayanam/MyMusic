@@ -94,3 +94,4 @@ C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Net.Http.Formatting.xml
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Web.Http.xml
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System.Web.Http.WebHost.xml
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.AddFollowingFunctionality.resources
