@@ -63,10 +63,11 @@ namespace MyMusic.Controllers
             var viewModel = new GigsViewModel
             {
                 ShowActions = User.Identity.IsAuthenticated,
-                UpcomingGigs = gigs
+                UpcomingGigs = gigs,
+                Heading = "Gigs I'm Attending"
             };
 
-            return View(viewModel);
+            return View("Gigs", viewModel);
         }
     }
 }
