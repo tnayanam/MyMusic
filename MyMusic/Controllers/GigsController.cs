@@ -22,9 +22,10 @@ namespace MyMusic.Controllers
         {
             var viewModel = new GigFormViewModel
             {
-                Genres = _context.Genres.ToList()
+                Genres = _context.Genres.ToList(),
+                Heading = "Add a Gig"
             };
-            return View(viewModel);
+            return View("GigForm", viewModel);
         }
 
         [Authorize]
@@ -35,7 +36,7 @@ namespace MyMusic.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Genres = _context.Genres.ToList();
-                return View("Create", viewModel);
+                return View("GigForm", viewModel);
             }
             var artistId = User.Identity.GetUserId();
             var gig = new Gig
@@ -95,10 +96,11 @@ namespace MyMusic.Controllers
                 Venue = gig.Venue,
                 Date = gig.DateTime.ToString("d MMM yyyy"),
                 Time = gig.DateTime.ToString("HH:mm"),
-                Genre = gig.GenreId
+                Genre = gig.GenreId,
+                Heading = "Edit a Gig"
             };
 
-            return View("Create", viewModel);
+            return View("GigForm", viewModel);
         }
     }
 }
