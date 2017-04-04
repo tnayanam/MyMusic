@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MyMusic.Models.Gig>
+@{
+    ViewBag.Title = "my";
+}
+
+<h1>My Upcoming Gigs</h1>
+
+<ul class="gigs voffset3">
+    @foreach (var gig in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="artist">
+                    @gig.Venue
+                </span>
+                <span class="genre">
+                    @gig.Genre.Name
+                </span>
+                <div class="actions">
+                    <a href="@Url.Action("Edit","Gigs", new { id = gig.Id })"> 
+                        @*we need to send the gig id of the form which needs to be edited*@
+                        @*IMPORTANT*@
+                        Edit
+                    </a>
+                    <a href="#">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
