@@ -21,6 +21,8 @@ namespace MyMusic.Models
 
         public Genre Genre { get; set; }
 
+        public bool isCanceled { get; set; }
+
         [Required]
         public byte GenreId { get; set; }
     }
