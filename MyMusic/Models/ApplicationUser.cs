@@ -10,17 +10,21 @@ namespace MyMusic.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        private ApplicationDbContext _context;
+
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
 
         public ICollection<Following> Followers { get; set; }
         public ICollection<Following> Followees { get; set; }
+        public ICollection<UserNotification> UserNotifications { get; set; }
 
         public ApplicationUser()
         {
             Followers = new Collection<Following>();
             Followees = new Collection<Following>();
+            UserNotifications = new Collection<UserNotification>();
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -29,7 +33,11 @@ namespace MyMusic.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public void Notify(Notification notification)
+        {
+            var userNotification = new UserNotification(this, notification);
+            UserNotifications.Add(userNotification);
+        }
     }
-
-
 }

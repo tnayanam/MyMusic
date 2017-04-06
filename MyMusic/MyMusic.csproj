@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201704040418401_addincanceltogig.Designer.cs">
       <DependentUpon>201704040418401_addincanceltogig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704060842294_addnotificion.cs" />
+    <Compile Include="Migrations\201704060842294_addnotificion.Designer.cs">
+      <DependentUpon>201704060842294_addnotificion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -266,6 +270,9 @@
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
@@ -375,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704040418401_addincanceltogig.resx">
       <DependentUpon>201704040418401_addincanceltogig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704060842294_addnotificion.resx">
+      <DependentUpon>201704060842294_addnotificion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
