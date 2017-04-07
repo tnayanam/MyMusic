@@ -22,18 +22,13 @@ namespace MyMusic.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
             var gig = _context.Gigs
-                .Include(g => g.Attendances.Select(a=>a.Attendee))
+                .Include(g => g.Attendances.Select(a => a.Attendee))
                 .Single(g => g.Id == id && g.ArtistId == userId);
 
             if (gig.isCanceled)
                 return NotFound();
 
-            gig.isCanceled = true;
-
-            var notification = new Notification(gig, NotificationType.GigCanceled);
-
-            foreach (var attendee in gig.Attendances.Select(a=>a.Attendee))
-                attendee.Notify(notification);
+            gig.Cancel();
 
             _context.SaveChanges();
 

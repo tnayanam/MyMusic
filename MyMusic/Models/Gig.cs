@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-
+using System.Linq;
 
 namespace MyMusic.Models
 {
@@ -23,7 +23,7 @@ namespace MyMusic.Models
 
         public Genre Genre { get; set; }
 
-        public bool isCanceled { get; set; }
+        public bool isCanceled { get; private set; }
 
         [Required]
         public byte GenreId { get; set; }
@@ -33,6 +33,28 @@ namespace MyMusic.Models
         public Gig()
         {
             Attendances = new Collection<Attendance>();
+        }
+
+        public void Cancel()
+        {
+            isCanceled = true;
+
+            var notification = Notification.GigCanceled(this);
+
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+                attendee.Notify(notification);
+        }
+
+        public void Modify(DateTime dateTime, string venue, byte genre)
+        {
+            var notification = Notification.GigUpdated(this, DateTime, Venue);
+
+            Venue = venue;
+            DateTime = dateTime;
+            GenreId = genre;
+
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+                attendee.Notify(notification);
         }
     }
 }
