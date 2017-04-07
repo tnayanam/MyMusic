@@ -28,9 +28,9 @@ namespace MyMusic.Controllers.Api
                   .Include(n => n.Gig.Artist)
                   .ToList();
 
-            Mapper.CreateMap<ApplicationUser, UserDto>();
-            Mapper.CreateMap<Gig, GigDto>();
-            Mapper.CreateMap<Notification, NotificationDto>();
+            //Mapper.CreateMap<ApplicationUser, UserDto>();
+            //Mapper.CreateMap<Gig, GigDto>();
+            //Mapper.CreateMap<Notification, NotificationDto>();
 
             return notifications.Select(Mapper.Map<Notification, NotificationDto>);
             //return notifications.Select(n => new NotificationDto()
