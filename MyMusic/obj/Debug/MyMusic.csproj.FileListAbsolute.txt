@@ -97,3 +97,5 @@ C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\System
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.AddFollowingFunctionality.resources
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.addincanceltogig.resources
 C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\obj\Debug\MyMusic.Migrations.addnotificion.resources
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\AutoMapper.dll
+C:\Users\lenovo\Documents\Visual Studio 2015\Projects\MyMusic\MyMusic\bin\AutoMapper.xml

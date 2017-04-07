@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using MyMusic.Dtos;
 using MyMusic.Models;
 using System.Collections.Generic;
@@ -27,25 +28,30 @@ namespace MyMusic.Controllers.Api
                   .Include(n => n.Gig.Artist)
                   .ToList();
 
-            return notifications.Select(n => new NotificationDto()
-            {
-                DateTime = n.DateTime,
-                Gig = new GigDto
-                {
-                    Artist = new UserDto()
-                    {
-                        Id = n.Gig.Artist.Id,
-                        Name = n.Gig.Artist.Name
-                    },
-                    DateTime = n.Gig.DateTime,
-                    Id = n.Gig.Id,
-                    isCanceled = n.Gig.isCanceled,
-                    Venue = n.Gig.Venue
-                },
-                OriginalDateTime = n.OriginalDateTime,
-                OriginalVenue = n.OriginalVenue,
-                Type = n.Type
-            });
+            Mapper.CreateMap<ApplicationUser, UserDto>();
+            Mapper.CreateMap<Gig, GigDto>();
+            Mapper.CreateMap<Notification, NotificationDto>();
+
+            return notifications.Select(Mapper.Map<Notification, NotificationDto>);
+            //return notifications.Select(n => new NotificationDto()
+            //{
+            //    DateTime = n.DateTime,
+            //    Gig = new GigDto
+            //    {
+            //        Artist = new UserDto()
+            //        {
+            //            Id = n.Gig.Artist.Id,
+            //            Name = n.Gig.Artist.Name
+            //        },
+            //        DateTime = n.Gig.DateTime,
+            //        Id = n.Gig.Id,
+            //        isCanceled = n.Gig.isCanceled,
+            //        Venue = n.Gig.Venue
+            //    },
+            //    OriginalDateTime = n.OriginalDateTime,
+            //    OriginalVenue = n.OriginalVenue,
+            //    Type = n.Type
+            //});
         }
 
     }
