@@ -32,10 +32,10 @@ namespace MyMusic.Models
 
         [Key]
         [Column(Order = 1)]
-        public string UserId { get; set; }
+        public string UserId { get; private set; }
 
         [Key]
         [Column(Order = 2)]
-        public int NotificationId { get; set; }
+        public int NotificationId { get; private set; }
     }
 }

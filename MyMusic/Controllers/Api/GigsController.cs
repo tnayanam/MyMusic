@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using MyMusic.Models;
-using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 
@@ -21,25 +21,18 @@ namespace MyMusic.Controllers.Api
         public IHttpActionResult Cancel(int id)
         {
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.Single(g => g.Id == id && g.ArtistId == userId);
+            var gig = _context.Gigs
+                .Include(g => g.Attendances.Select(a=>a.Attendee))
+                .Single(g => g.Id == id && g.ArtistId == userId);
+
             if (gig.isCanceled)
                 return NotFound();
 
             gig.isCanceled = true;
 
-            var notification = new Notification
-            {
-                DateTime = DateTime.Now,
-                Gig = gig,
-                Type = NotificationType.GigCanceled
-            };
+            var notification = new Notification(gig, NotificationType.GigCanceled);
 
-            var attendees = _context.Attendances
-                .Where(a => a.GigId == gig.Id)
-                .Select(a => a.Attendee)
-                .ToList();
-
-            foreach (var attendee in attendees)
+            foreach (var attendee in gig.Attendances.Select(a=>a.Attendee))
                 attendee.Notify(notification);
 
             _context.SaveChanges();
