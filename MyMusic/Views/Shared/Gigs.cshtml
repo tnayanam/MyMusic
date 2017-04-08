@@ -32,18 +32,20 @@
             </div>
             <div class="details">
                 <span class="artist">
-                    @gig.Artist.Name
+                    <a href="@Url.Action("Details","Gigs", new { id = gig.Id })">
+                            @gig.Artist.Name
+                        </a>
 
-                    @if (gig.isCanceled)
-                    {
-                        <span class="label label-warning">Canceled</span>
-                    }
+                        @if (gig.isCanceled)
+                        {
+                            <span class="label label-warning">Canceled</span>
+                        }
 
-                    @if (Model.ShowActions)
-                    {
-                        <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow">Follow</button>
-                    }
-                </span>
+                        @if (Model.ShowActions)
+                        {
+                            <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow">Follow</button>
+                        }
+</span>
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
