@@ -55,7 +55,9 @@
                     title: "Notifications",
                     content: function()
                     {
-                        return "Hello World";
+                        var compiled = _.template("Hello <%= name %>")
+                        var html = compiled({ name: "Mosh" });
+                        return html;
                     },
                     placement: "bottom"
                 });
