@@ -135,6 +135,13 @@ h6,
     left: 70px;    
 }
 
+.popover
+{
+        -webkit-box-shadow: none;
+    
+             box-shadow: none;
+}
+
 .gigs {
     list-style: none;
 }
