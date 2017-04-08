@@ -19,6 +19,21 @@ namespace MyMusic.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
+        [HttpPost]
+        public IHttpActionResult MarkAsResult()
+        {
+            var userId = User.Identity.GetUserId();
+            var notifications = _context.UserNotifications
+                .Where(un => un.UserId == userId && !un.IsRead)
+                .ToList();
+
+            notifications.ForEach(n => n.Read());
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         public IEnumerable<NotificationDto> GetNewNotifications()
         {
             var userId = User.Identity.GetUserId();

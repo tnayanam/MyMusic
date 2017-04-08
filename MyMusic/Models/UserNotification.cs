@@ -28,7 +28,7 @@ namespace MyMusic.Models
 
         public Notification Notification { get; private set; }
 
-        public bool IsRead { get; set; }
+        public bool IsRead { get; private set; }
 
         [Key]
         [Column(Order = 1)]
@@ -37,5 +37,10 @@ namespace MyMusic.Models
         [Key]
         [Column(Order = 2)]
         public int NotificationId { get; private set; }
+
+        public void Read()
+        {
+            IsRead = true;
+        }
     }
 }
