@@ -66,11 +66,11 @@
                             originalValues.push(notification.originalDateTime);
                             newValues.push(notification.gig.dateTime);
                         }
-                    %><li>
-                          <%= notification.gig.artist.name %> has changed the <%=changes.join(' and ')%>  of the gig from <%=originalValues.join('/')%> to <%=newValues.join('/')%>
-                    </li>
+                        %><li>
+                              <%= notification.gig.artist.name %> has changed the <%=changes.join(' and ')%>  of the gig from <%=originalValues.join('/')%> to <%=newValues.join('/')%>
+                        </li>
             
-                  <%  } 
+                  <%} 
             })
             %>
         </ul>
@@ -78,11 +78,14 @@
     <script>
         $(document).ready(function () {
             $.getJSON("/api/notifications", function (notifications) {
-                debugger;
+               
+                if (notifications.count == 0)
+                    return;
                 $(".js-notifications-count")
                     .text(notifications.length)
                     .removeClass("hide")
                 .addClass("animated bounceInDown");
+             
                 $(".notifications").popover({
                     html: true,
                     title: "Notifications",
