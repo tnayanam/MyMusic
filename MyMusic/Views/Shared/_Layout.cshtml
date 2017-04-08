@@ -46,7 +46,7 @@
             <% _.each(notifications, function(notification){
                     if(notification.type ==1) {%>
                     <li>
-                      <span class="highlight"><%= notification.gig.artist.name %></span>   has canceled the gig at <%=notification.gig.venue%> at <%=notification.gig.dateTime%>
+                      <span class="highlight"><%= notification.gig.artist.name %></span>   has canceled the gig at <%=notification.gig.venue%> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm")%>
                     </li>
                     <%}
                     else if (notification.type ==2)
@@ -63,8 +63,8 @@
                         if(notification.originalDateTime != notification.gig.dateTime)
                         {
                             changes.push('date/time');
-                            originalValues.push(notification.originalDateTime);
-                            newValues.push(notification.gig.dateTime);
+                            originalValues.push(moment(notification.originalDateTime).format("D MMM HH::mm"));
+                            newValues.push(moment(notification.gig.dateTime).format("D MMM HH::mm"));
                         }
                         %><li>
                               <span class="highlight"> <%= notification.gig.artist.name %></span> has changed the <%=changes.join(' and ')%>  of the gig from <%=originalValues.join('/')%> to <%=newValues.join('/')%>
