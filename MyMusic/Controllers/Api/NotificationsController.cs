@@ -20,7 +20,7 @@ namespace MyMusic.Controllers.Api
         }
 
         [HttpPost]
-        public IHttpActionResult MarkAsResult()
+        public IHttpActionResult MarkAsRead()
         {
             var userId = User.Identity.GetUserId();
             var notifications = _context.UserNotifications
