@@ -37,8 +37,7 @@
     </div>
     @*below is the place where we have actually referenced jquery  present in bundle.config file. Adding here jquery makes sure that jquery will be availble in every single page*@
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)
 
     <script type="text/x-template" id="notifications-template">  
