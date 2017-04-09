@@ -78,7 +78,7 @@
             $.getJSON("/api/notifications", function (notifications) {
                 if (notifications.length == 0)
                     return;
-
+                debugger;
                 $(".js-notifications-count")
                     .text(notifications.length)
                     .removeClass("hide")

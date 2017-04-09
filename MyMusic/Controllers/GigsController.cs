@@ -38,6 +38,7 @@ namespace MyMusic.Controllers
                 viewModel.Genres = _context.Genres.ToList();
                 return View("GigForm", viewModel);
             }
+
             var artistId = User.Identity.GetUserId();
             var gig = new Gig
             {
@@ -46,6 +47,15 @@ namespace MyMusic.Controllers
                 DateTime = viewModel.GetDateTime(),
                 GenreId = viewModel.Genre
             };
+            //var notification = Notification.GigCreated(gig);
+            //var userId = User.Identity.GetUserId();
+            //var listOfFollower = _context.Followings.Where(f => f.FolloweeId == userId).Select(f => f.Follower).ToList();
+
+            //foreach (var attendee in listOfFollower)
+            //{
+            //    attendee.Notify(notification);
+            //}
+
             _context.Gigs.Add(gig);
             _context.SaveChanges();
             return RedirectToAction("Mine", "Gigs");
@@ -157,7 +167,7 @@ namespace MyMusic.Controllers
                     .Any(a => a.GigId == gig.Id && a.AttendeeId == userId);
 
                 viewModel.IsFollowing = _context.Followings
-                    .Any(f => f.FollowerId == userId && f.FollowerId == gig.ArtistId);
+                    .Any(f => f.FollowerId == userId && f.FolloweeId == gig.ArtistId);
             }
 
             return View("Details", viewModel);

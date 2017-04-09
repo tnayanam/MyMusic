@@ -175,13 +175,15 @@ h6,
     }
 
     .gigs > li .details .genre {
-        font-size: 15px;
+      font-size: 14px;
+  display: block;
+  margin-bottom: 4px;
     }
 
     .gigs > li .actions
     {
-        font-size: 15px;
-        display: none;
+         font-size: 15px;
+  display: none;
     }
 
      .gigs > li:hover .actions
@@ -216,5 +218,9 @@ h6,
      }
 
      #searchGigs{
-         width:300px;
+         width:400px;
      }
+
+#searchGigs input {
+  max-width: none;
+}

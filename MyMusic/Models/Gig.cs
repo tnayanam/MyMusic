@@ -56,5 +56,6 @@ namespace MyMusic.Models
             foreach (var attendee in Attendances.Select(a => a.Attendee))
                 attendee.Notify(notification);
         }
+
     }
 }

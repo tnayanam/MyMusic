@@ -18,7 +18,7 @@
     </div>
 } 
 
-<ul class="gigs voffset4">
+<ul id="gigs" class="gigs voffset4">
     @foreach (var gig in Model.UpcomingGigs)
     {
         <li>
@@ -40,11 +40,6 @@
                         {
                             <span class="label label-warning">Canceled</span>
                         }
-
-                        @if (Model.ShowActions)
-                        {
-                            <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow">Follow</button>
-                        }
                   </span>
                 <span class="genre">
                     @gig.Genre.Name
@@ -54,35 +49,21 @@
                     <button data-gig-id="@gig.Id"
                             class="btn
                             @(Model.Attendances.Contains(gig.Id) ? "btn-info" : "btn-default")
-                            btn-sm pull-right js-toggle-attendance">
+                            btn-sm js-toggle-attendance">
                         @(Model.Attendances.Contains(gig.Id) ? "Going" : "Going?")
                     </button>
                 }
             </div>
         </li>
-        }
+      }
 </ul>
 
-@section scripts
-{
+@section scripts{
     <script>
         $(document).ready(function () {
-            GigsController.init
-            $(".js-toggle-follow").click(function (e) {
-                var button = $(e.target);
-                debugger;
-                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
-                    .done(function () {
-                        button.text("Following");
-                    })
-                    .fail(function () {
-                        alert("failed");
-                    });
-            });
+            GigsController.init("#gigs");
         });
-
-
-    </script>
+</script>
 }
 
 
