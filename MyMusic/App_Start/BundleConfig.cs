@@ -15,6 +15,9 @@ namespace MyMusic
                         "~/Scripts/respond.js",
                         "~/Scripts/bootbox.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/lib").Include(
+                        "~/Scripts/app/app.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 

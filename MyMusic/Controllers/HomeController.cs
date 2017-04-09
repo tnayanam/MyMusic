@@ -1,4 +1,5 @@
-﻿using MyMusic.Models;
+﻿using Microsoft.AspNet.Identity;
+using MyMusic.Models;
 using MyMusic.ViewModels;
 using System;
 using System.Data.Entity;
@@ -21,6 +22,7 @@ namespace MyMusic.Controllers
                                 .Include(g => g.Artist)
                                 .Include(g => g.Genre)
                                 .Where(g => g.DateTime > DateTime.Now && !(g.isCanceled));
+
             if (!String.IsNullOrWhiteSpace(query))
             {
                 upcomingGigs = upcomingGigs.Where(g =>
@@ -29,12 +31,19 @@ namespace MyMusic.Controllers
                 g.Venue.Contains(query));
             }
 
+            var userId = User.Identity.GetUserId();
+            var attendances = _context.Attendances
+                .Where(a => a.AttendeeId == userId && a.Gig.DateTime > DateTime.Now)
+                .ToList()
+                .ToLookup(a => a.GigId);
+
             var viewModel = new GigsViewModel
             {
                 UpcomingGigs = upcomingGigs,
                 ShowActions = User.Identity.IsAuthenticated,
                 Heading = "Upcoming Gigs",
-                SearchTerm = query
+                SearchTerm = query,
+                Attendances = attendances
             };
 
             return View("Gigs", viewModel);
