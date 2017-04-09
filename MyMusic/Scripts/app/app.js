@@ -1,6 +1,9 @@
-﻿function initGigs()
-{
-    $(".js-toggle-attendance").click(function (e) {
+﻿//Immediately Invoked Function Expression 
+var GigsController = function () {
+    var init = function () {
+        $(".js-toggle-attendance").click(toggleAttendance)
+    };
+    var toggleAttendance = function (e) {
         var button = $(e.target);
         if (button.hasClass("btn-default")) {
             $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
@@ -28,5 +31,9 @@
                     alert("something failed");
                 })
         }
-    });
-}
+
+    };
+    return {
+        init: init
+    }
+}();
