@@ -55,15 +55,7 @@ namespace MyMusic.Controllers
                 DateTime = viewModel.GetDateTime(),
                 GenreId = viewModel.Genre
             };
-            //var notification = Notification.GigCreated(gig);
-            //var userId = User.Identity.GetUserId();
-            //var listOfFollower = _context.Followings.Where(f => f.FolloweeId == userId).Select(f => f.Follower).ToList();
-
-            //foreach (var attendee in listOfFollower)
-            //{
-            //    attendee.Notify(notification);
-            //}
-            _context.Gigs.Add(gig);
+            _gigRepository.Add(gig);
             _context.SaveChanges();
 
             return RedirectToAction("Mine", "Gigs");
