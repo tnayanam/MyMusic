@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using MyMusic.Models;
+using MyMusic.Repositories;
 using MyMusic.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -12,10 +12,14 @@ namespace MyMusic.Controllers
     public class GigsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly AttendanceRepository _attendanceRepository;
+        private readonly GigRepository _gigRepository;
 
         public GigsController()
         {
             _context = new ApplicationDbContext();
+            _attendanceRepository = new AttendanceRepository(_context);
+            _gigRepository = new GigRepository(_context);
         }
         // Create
         [Authorize]
@@ -66,33 +70,18 @@ namespace MyMusic.Controllers
         public ActionResult Attending()
         {
             var userId = User.Identity.GetUserId();
-            var viewModel = new GigsViewModel
+             var viewModel = new GigsViewModel
             {
                 ShowActions = User.Identity.IsAuthenticated,
-                UpcomingGigs = GetGigsUserAttending(userId),
+                UpcomingGigs = _gigRepository.GetGigsUserAttending(userId),
                 Heading = "Gigs I'm Attending",
-                Attendances = GetFutureAttendances(userId).ToLookup(a => a.GigId)
+                Attendances = _attendanceRepository.GetFutureAttendances(userId).ToLookup(a => a.GigId)
             };
 
             return View("Gigs", viewModel);
         }
 
-        private List<Gig> GetGigsUserAttending(string userId)
-        {
-            return _context.Attendances
-                .Where(a => a.AttendeeId == userId)
-                .Select(a => a.Gig)
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
-                .ToList();
-        }
 
-        private List<Attendance> GetFutureAttendances(string userId)
-        {
-            return _context.Attendances
-                .Where(a => a.AttendeeId == userId && a.Gig.DateTime > DateTime.Now)
-                .ToList();
-        }
 
         [Authorize]
         public ActionResult Mine()
